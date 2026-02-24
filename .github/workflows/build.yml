@@ -251,7 +251,7 @@ jobs:
           QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}
           LOGIN_USER: ${{ secrets.QUAY_USER }}
         run: |
-          echo "${QUAY_TOKEN}" | sudo podman login -u "${LOGIN_USER}" --password-stdin "quay.io"
+          echo "${QUAY_TOKEN}" | podman login -u "${LOGIN_USER}" --password-stdin "quay.io"
           echo "${QUAY_TOKEN}" | docker login -u "${LOGIN_USER}" --password-stdin "quay.io" # For cosign
 
       - name: Publish manifest with unified architecture and sign
