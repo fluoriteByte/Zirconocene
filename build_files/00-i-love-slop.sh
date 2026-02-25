@@ -5,6 +5,11 @@ set -xeuo pipefail
 dnf config-manager setopt keepcache=1
 trap 'dnf config-manager setopt keepcache=0' EXIT
 
+( # stuff im taking from the secureblue project lol
+    dnf copr enable secureblue/packages
+    dnf -y install hardened_malloc no_rlimit_as
+)
+
 ( # install fish!
     dnf -y install fish
 )
