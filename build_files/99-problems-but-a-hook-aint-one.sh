@@ -11,3 +11,7 @@ KERNEL_VERSION="$(find "/usr/lib/modules" -maxdepth 1 -type d ! -path "/usr/lib/
 export DRACUT_NO_XATTR=1
 dracut --no-hostonly --kver "$KERNEL_VERSION" --reproducible --zstd -v --add ostree -f "/usr/lib/modules/$KERNEL_VERSION/initramfs.img"
 chmod 0600 "/usr/lib/modules/${KERNEL_VERSION}/initramfs.img"
+
+# Trust yourself, kid
+podman image trust set quay.io/fluoritebyte/zirconocene \
+  -f /usr/share/pki/containers/zirconocene.pub
