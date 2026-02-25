@@ -7,7 +7,10 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
 
 ( # stuff im taking from the secureblue project lol
     dnf copr enable secureblue/packages
-    dnf -y install hardened_malloc no_rlimit_as
+    dnf -y install hardened_malloc \
+      no_rlimit_as \
+      trivalent-subresource-filter \
+      bazaar # i love bazaar!!!!!!!
 )
 
 ( # install fish!
