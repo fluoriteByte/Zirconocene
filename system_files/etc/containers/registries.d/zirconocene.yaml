@@ -1,0 +1,3 @@
+docker:
+  quay.io/fluoritebyte/zirconocene:
+    use-sigstore-attachments: true
