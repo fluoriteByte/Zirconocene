@@ -34,4 +34,8 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
     dnf -y install $dnf_opts podman-compose
 )
 
+( # install usb-wakeup-control in the container :p
+    /ctx/build/usb-wakeup-control/usb-wakeup-control.sh install
+)
+
 cp -avf "/ctx/files"/. /

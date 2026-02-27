@@ -1,0 +1,3 @@
+[submodule "build_files/usb-wakeup-control"]
+	path = build_files/usb-wakeup-control
+	url = git@github.com:fluoriteByte/usb-wakeup-control.git
