@@ -36,7 +36,7 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
 
 ( # install usb-wakeup-control in the container :p
     cd /ctx/build/usb-wakeup-control/
-    install -Dm0755 usb-wakeup-control.sh -t /usr/bin/
+    install -m0755 usb-wakeup-control.sh /usr/bin/usb-wakeup-control
     install -Dm644 usb-wakeup-control.service -t /etc/systemd/system
     systemctl enable usb-wakeup-control
 )
