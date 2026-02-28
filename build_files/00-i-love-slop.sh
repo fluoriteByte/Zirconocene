@@ -41,4 +41,9 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
     systemctl enable usb-wakeup-control
 )
 
+( # install usb-guard
+    dnf -y install usbguard
+    systemctl enable usbguard
+)
+
 cp -avf "/ctx/files"/. /
