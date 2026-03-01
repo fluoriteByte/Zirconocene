@@ -42,7 +42,7 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
 )
 
 ( # install usb-guard
-    dnf -y install usbguard
+    dnf -y install usbguard usbguard-notifier usbguard-tools
     systemctl enable usbguard
 )
 
