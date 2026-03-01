@@ -46,4 +46,7 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
     systemctl enable usbguard
 )
 
+( # install system-config-printer (only libs and udev by default for some reason???
+    dnf -y install system-config-printer-applet
+)
 cp -avf "/ctx/files"/. /
