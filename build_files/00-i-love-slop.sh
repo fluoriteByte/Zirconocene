@@ -49,4 +49,10 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
 ( # install system-config-printer (only libs and udev by default for some reason???
     dnf -y install system-config-printer-applet
 )
+
+( # install nm-connection-editor
+    dnf -y install nm-connection-editor-desktop nm-connection-editor
+)
+
+# copyyyyyy
 cp -avf "/ctx/files"/. /
