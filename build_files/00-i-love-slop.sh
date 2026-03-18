@@ -3,6 +3,7 @@
 set -xeuo pipefail
 
 dnf_opts="--setopt=fastestmirror=True"
+dnf install -y dnf5-plugins
 
 dnf config-manager setopt keepcache=1
 trap 'dnf config-manager setopt keepcache=0' EXIT
