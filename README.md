@@ -13,7 +13,7 @@ Inclusions include:
 - usbguard
 - default fedora printing util that some fedora spins has, (dms's is ass rn)
 - nm-connection-editor because dms's connection editor is non existant x3
-
+- system printer applet, cus there's no fully working printer management in dms x3
 Build instructions:
 ```
 git submodule init # unfortunately, --recursive still isn't default, just like sha256 repos :sob:
