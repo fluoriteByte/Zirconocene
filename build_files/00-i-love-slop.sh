@@ -28,7 +28,7 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
 )
 
 ( # install fish! and other cli utils :3c
-    dnf -y install fish bat
+    dnf -y install fish bat wget # WHY IS WGET MISSING??????
 )
 
 ( # install podman compose lol
