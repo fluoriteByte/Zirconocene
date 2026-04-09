@@ -10,8 +10,12 @@ COPY cosign.pub /files/usr/share/pki/containers/zirconocene.pub
 FROM "${BASE_IMAGE}"
 ARG BUILD_FLAVOR="${BUILD_FLAVOR:-}"
 
+# Wait until upstream fix lool
 # fix selinux
-RUN cp --reflink=auto -r /etc/selinux/ /var/lib/
+#RUN cp --reflink=auto -r /etc/selinux/ /var/lib/
+
+# Disable SELINUX by defautl lol
+RUN sed -i 's/SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
 
 # Guix step, doesn't change that much hopefully since it's just a script, so should just continue to work lol
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
@@ -63,8 +67,7 @@ RUN setfattr -n user.component -v "Guix_files" \
     /usr/lib/systemd/system/guix-daemon.service \
     /usr/lib/systemd/system/guix-first-boot.service
     
-# RUN rm -rf /var/*
-RUN mkdir /var/tmp && bootc container lint
+RUN rm -rf /var/* && mkdir /var/tmp && bootc container lint
 
 #RUN cp --reflink=auto -r /etc/selinux/ /var/lib/
 

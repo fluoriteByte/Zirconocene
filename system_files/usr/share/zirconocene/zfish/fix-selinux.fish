@@ -9,6 +9,6 @@ end
 run0 bash -c \
     " {
         setenforce 0
-        cp --reflink=auto /etc/selinux/ /var/lib/
-        reboot
+        cp -r --reflink=auto /etc/selinux/ /var/lib/
+        setenforce 1
     }"
