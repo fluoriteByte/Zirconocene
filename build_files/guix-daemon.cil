@@ -512,3 +512,16 @@
            file (system_u object_r guix_daemon_exec_t (low low)))
   (filecon "/var/guix/daemon-socket/socket"
            any (system_u object_r guix_daemon_socket_t (low low))))
+
+;;; Extra stuff to fix daemon not loading!
+;============= init_t ==============
+(allow init_t default_t (file (execute_no_trans read execute open)))
+
+;!!!! This avc can be allowed using the boolean 'domain_can_mmap_files'
+(allow init_t default_t (file (map)))
+(allow init_t self (process (execmem)))
+(allow init_t var_lib_t (file (execute_no_trans execute)))
+
+;!!!! This avc can be allowed using the boolean 'domain_can_mmap_files'
+(allow init_t var_lib_t (file (map)))
+(allow init_t var_t (sock_file (create unlink)))
