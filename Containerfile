@@ -11,7 +11,7 @@ FROM "${BASE_IMAGE}"
 ARG BUILD_FLAVOR="${BUILD_FLAVOR:-}"
 
 # fix selinux
-RUN cp --reflink=auto /etc/selinux/ /var/lib/
+RUN cp --reflink=auto -r /etc/selinux/ /var/lib/
 
 # Guix step, doesn't change that much hopefully since it's just a script, so should just continue to work lol
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
@@ -66,7 +66,7 @@ RUN setfattr -n user.component -v "Guix_files" \
 # RUN rm -rf /var/*
 RUN mkdir /var/tmp && bootc container lint
 
-#RUN cp --reflink=auto /etc/selinux/ /var/lib/
+#RUN cp --reflink=auto -r /etc/selinux/ /var/lib/
 
 #Free yuri at yuri.gz
 # gunzip it and then use a base64 to image thingy
