@@ -10,6 +10,9 @@ COPY cosign.pub /files/usr/share/pki/containers/zirconocene.pub
 FROM "${BASE_IMAGE}"
 ARG BUILD_FLAVOR="${BUILD_FLAVOR:-}"
 
+# fix selinux
+RUN cp --reflink=auto /etc/selinux/ /var/lib/
+
 # Guix step, doesn't change that much hopefully since it's just a script, so should just continue to work lol
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/var \
@@ -60,7 +63,10 @@ RUN setfattr -n user.component -v "Guix_files" \
     /usr/lib/systemd/system/guix-daemon.service \
     /usr/lib/systemd/system/guix-first-boot.service
     
-RUN rm -rf /var/* && mkdir /var/tmp && bootc container lint
+# RUN rm -rf /var/*
+RUN mkdir /var/tmp && bootc container lint
+
+#RUN cp --reflink=auto /etc/selinux/ /var/lib/
 
 #Free yuri at yuri.gz
 # gunzip it and then use a base64 to image thingy
