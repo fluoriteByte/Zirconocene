@@ -10,6 +10,14 @@ COPY cosign.pub /files/usr/share/pki/containers/zirconocene.pub
 FROM "${BASE_IMAGE}"
 ARG BUILD_FLAVOR="${BUILD_FLAVOR:-}"
 
+# Guix step, doesn't change that much hopefully since it's just a script, so should just continue to work lol
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/var \
+    --mount=type=tmpfs,dst=/tmp \
+    --mount=type=tmpfs,dst=/run \
+    --mount=type=tmpfs,dst=/boot \
+    /ctx/build/01-guix.slop
+
 # programs i like :3
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/var \
@@ -19,14 +27,14 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache/libdnf5 \
     /ctx/build/00-i-love-slop.sh
 
-# Guix step
+# trivalent >.>, many updates, will have to actually split it up from the others
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=tmpfs,dst=/var \
     --mount=type=tmpfs,dst=/tmp \
     --mount=type=tmpfs,dst=/run \
     --mount=type=tmpfs,dst=/boot \
-    /ctx/build/01-guix.slop
-
+    --mount=type=cache,dst=/var/cache/libdnf5 \
+    /ctx/build/98-trivalent.slop
 
 # post everything script
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
