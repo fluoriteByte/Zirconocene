@@ -46,7 +46,9 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
     dnf -y install usbguard usbguard-notifier usbguard-tools
     systemctl enable usbguard
 )
-
+( # install adb and udev stuff
+    dnf -y install android-udev-rules android-tools
+)
 ( # install system-config-printer (only libs and udev by default for some reason???
     dnf -y install system-config-printer system-config-printer-applet
 )
