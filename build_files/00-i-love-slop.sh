@@ -57,6 +57,10 @@ trap 'dnf config-manager setopt keepcache=0' EXIT
     dnf -y install nm-connection-editor-desktop nm-connection-editor
 )
 
+( # dnscrypt-proxy
+    dnf -y install dnscrypt-proxy
+)
+
 ( # uninstall tailscale, i don't feel like using it
     dnf -y remove tailscale
 )
